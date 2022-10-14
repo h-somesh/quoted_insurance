@@ -103,7 +103,7 @@ def main():
         file_details = {"file name":data_file.name, "file type":data_file.type, "file size":data_file.size}
         st.write(file_details)
         
-        df=pd.read_csv(data_file).sample(100)
+        df=pd.read_csv(data_file).sample(50)
         st.write(df)
     
         quote_converted=''
