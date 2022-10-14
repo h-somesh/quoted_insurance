@@ -8,7 +8,6 @@ Created on Fri Oct 14 19:54:36 2022
 import pandas as pd
 import numpy as np
 import pickle
-import sklearn
 import streamlit as st
 from sklearn.preprocessing import StandardScaler
 from sklearn.feature_selection import VarianceThreshold
