@@ -71,19 +71,19 @@ def predict_fn():
     data.drop(columns = ['QuoteNumber','Original_Quote_Date'], axis = 1, inplace = True)
     
     #onehotencodecategoricaldata
-    encoders_dict = pickle.load(open('encoders_dict','rb'))
+    encoders_dict = pickle.load(open('encoders_dict.pkl','rb'))
     encoded_categorical_data = encode_categorical_data(data,encoders_dict)
     data.drop(labels = list(encoders_dict.keys()), axis = 1 , inplace = True)
     data = np.hstack((data.to_numpy(),encoded_categorical_data))
     
     #removing constant,scaling data
-    vr = pickle.load(open('constant_features','rb'))
+    vr = pickle.load(open('constant_features.pkl','rb'))
     data = data[:,vr.get_support()]
-    scaler = pickle.load(open('feature_scaling','rb'))
+    scaler = pickle.load(open('feature_scaling.pkl','rb'))
     data = scaler.transform(data)
     
     #loading model
-    model = pickle.load(open('model','rb'))
+    model = pickle.load(open('model.pkl','rb'))
     y_pred = np.argmax(model.predict_proba(data), axis = -1)
     
     predictions = pd.DataFrame(data = zip(quote_number,y_pred), columns = ['QuoteNumber','QuoteConversion_Flag'])
